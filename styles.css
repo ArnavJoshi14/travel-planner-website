@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    font-family: "Rubik", sans-serif;
+}
+header {
+    display: flex;
+    height: 10vh;
+    justify-content: space-between;
+    padding: 10px 30px;
+    align-items: center;
+}
+
+header a {
+    text-decoration: none;
+    color: #0f3e4a;
+    transition: all 0.2s ease-in-out;
+    padding: 5px 10px;
+    border-radius: 30px;
+}
+
+header a:hover {
+    background-color: rgb(235, 233, 233);
+
+}
+
+header nav {
+    display: flex;
+    gap: 60px
+}
+
+header .login-signup {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+} 
+
+.signup-btn {
+    background-color: #13c892;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 2px solid #13c892;
+    transition: all 0.2s ease-in-out;
+}
+
+.login-btn {
+    transition: all 0.2s ease-in-out;
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+
+.login-btn:hover {
+    background-color: rgb(235, 233, 233);
+}
+
+.signup-btn:hover {
+    background-color: white;
+    color: #13c892;
+}
+
+.hero-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero {
+    text-align: center;
+    width: 50vw;
+    padding: 50px;
+}
+
+.hero * {
+    margin: 30px;
+    color: #0f3e4a;
+}
+
+.hero h1 {
+    font-size: 40pt;
+}
+
+.hero p, a {
+    font-size: larger;
+}
+
+.hero span {
+    font-family: "Poppins", sans-serif;
+    color: #13c892;
+}
+
+.hero a {
+    text-decoration: none;
+    background-color: #13c892;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 2px solid #13c892;
+    transition: all 0.2s ease-in-out;
+}
+
+.hero a:hover {
+    background-color: white;
+    color: #13c892;
+}
