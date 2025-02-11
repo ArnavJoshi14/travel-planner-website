@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+}
+
+.background{
+    background: #ffffff url(/assets/air-visual-51a556cc.svg) no-repeat center 4rem;
+    background-size: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    gap: 40px;
+}
+
+.left-section {
+    flex: 1;
+    padding: 40px;
+}
+
+.right-section {
+    flex: 1;
+    border-radius: 5px;
+    max-width: 500px;
+    padding: 40px;
+}
+
+.logo {
+    display:flex;
+    align-items: center;
+    justify-content: left;
+    color: #13c892;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.heading1 {
+    font-size: 48px;
+    line-height: 1;
+    margin-bottom: none;
+    color: #0b946b;
+}
+
+.heading2 {
+    font-size: 48px;
+    color: #0f3e4a;
+    line-height: 1;
+    margin-bottom: 30px;
+}
+
+.store-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.store-button {
+    background: #000;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.store-button:hover{
+    opacity: 0.7;
+}
+
+.login-form {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-title {
+    font-size: 24px;
+    color: #1e3146;
+    margin-bottom: 24px;
+}
+
+.social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-radius: 15px;
+    margin-bottom: 24px;
+}
+
+.social-button {
+    display: flex;
+    align-items: center;
+    box-shadow:  0 2px 3px #00000017;;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    font-family: sans-serif, Times, serif;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
+    font-size: 16px;
+    color: #0f3e4a;
+}
+
+.social-button:hover{
+    background-color: #deedf7;
+}
+
+.divider {
+    text-align: center;
+    margin: 24px 0;
+    color: #6c757d;
+}
+
+.form-type {
+    margin-bottom: 16px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.forgot-password {
+    display: block;
+    text-align: right;
+    color: #6c757d;
+    text-decoration: underline;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+.socia-button{
+    background-color: #000;
+    border-radius: 10px;
+}
+
+.login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    width: 100%;
+    padding: 12px;
+    background: #13c892;
+    color: white;
+    border: 1px solid #13c892;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.login-button:hover{
+    background-color: #fff;
+    color:#13c892;
+    border: 2px solid #13c892;
+}
+
+.create-account {
+    text-decoration: none;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.create-account:hover{
+    opacity: 0.5;
+}
+
+.app-preview {
+    max-width: 80%;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
