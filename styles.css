@@ -1,6 +1,8 @@
+* {
+    font-family: "Rubik", sans-serif;
+}
 body {
     margin: 0;
-    font-family: "Rubik", sans-serif;
 }
 header {
     display: flex;
@@ -102,3 +104,265 @@ header .login-signup {
     background-color: white;
     color: #13c892;
 }
+<<<<<<< HEAD
+=======
+.nav-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.nav-icons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #888;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-item i {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.nav-item span {
+    font-size: 14px;
+    font-weight: 500;
+}
+.nav-item.active {
+    color: #ffcc00;
+    background-color: rgba(255, 204, 0, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+}
+.nav-item:hover {
+    color: #13c892;
+    cursor: pointer;
+}
+.app-container {
+    display: flex;
+    justify-content: center;
+    padding: 150px;
+    background-image: url('images/backg1.svg');
+    background-size: auto;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+.signup-now h4 {
+    text-align: center;
+    font-size: 16px;
+    color: #777;
+}
+.signup-now h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #222;
+}
+.download-buttons img {
+    width: 150px;
+    margin: 10px;
+}
+.logoimage{
+    width: 100px;
+}
+.logoimage img{
+    width: 100px;
+}
+.footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fcf7ec;
+    padding: 50px 80px;
+    flex-wrap: wrap;
+}
+
+.app-logos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.logoimage img {
+    width: 120px;
+}
+
+.icons {
+    display: flex;
+    gap: 15px;
+}
+
+.icons i {
+    font-size: 24px;
+    color: #0f3e4a;
+    transition: color 0.3s ease-in-out;
+}
+
+.icons i:hover {
+    color: #13c892;
+}
+
+.footer-links {
+    display: flex;
+    gap: 50px;
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.footer-links h3 {
+    font-size: 18px;
+    color: #0f3e4a;
+    margin-bottom: 10px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin: 8px 0;
+}
+
+.footer-links ul li a {
+    text-decoration: none;
+    color: #0f3e4a;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #13c892;
+}
+
+.footer-app {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-app h3 {
+    font-size: 18px;
+    color: #0f3e4a;
+}
+
+.footer-app img {
+    width: 150px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.footer-app img:hover {
+    transform: scale(1.05);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+    background-color: #fcf7ec;
+}
+
+.footer-links-bottom a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #0f3e4a;
+    transition: color 0.3s ease;
+}
+
+.footer-links-bottom a:hover {
+    text-decoration: underline;
+    color: #13c892;
+}
+/* .container2{
+    display: flex;
+    width: 60%;
+    margin: auto;
+    gap: 10%;
+    font-size: 1.3rem;
+}
+.image-section img{
+    width: 400px;
+    height: 400px;
+}*/
+.heading1{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+.heading1 h2{
+    font-size: 3rem;
+    font-weight: 500;
+}
+.container2 {
+    display: flex;
+    max-width: 1200px;
+    gap: 50px;
+    align-items: center;
+    margin: auto;
+}
+
+
+.text-section {
+    max-width: 550px;
+}
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.text1, .text2, .text3, .text4 {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feature-box {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.light:hover{
+    background-color: #f375c9;
+}
+
+.green:hover{
+    background-color:#13c892;
+    color: white;
+}
+
+.purple:hover{
+    background-color: #7e68e2;
+    color: white;
+}
+
+.orange:hover{
+    background-color: #f4a261;
+    color: white;
+}
+
+.image-section {
+    flex-shrink: 0;
+}
+
+.image-section img {
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+>>>>>>> 03573869574a67e309bdd2c9b5e1b9740bb5d369
