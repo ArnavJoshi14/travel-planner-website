@@ -225,9 +225,9 @@ main {
 
 .footer-links {
     display: flex;
-    gap: 50px;
+    gap: 5rem;
     flex-grow: 1;
-    margin-left: 20px;
+    margin-left: 5rem;
 }
 
 .footer-links h3 {
