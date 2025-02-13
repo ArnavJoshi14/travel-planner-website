@@ -330,7 +330,7 @@ main {
     max-width: 35%;
 }
 .light, .green, .purple, .orange {
-    transition: all 0.1s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
 }
 h2 {
     font-size: 20px;

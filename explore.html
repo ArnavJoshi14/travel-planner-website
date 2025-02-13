@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore | Triply</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: "Rubik", sans-serif;
+        }
+        .logo {
+            width: 120px;
+            position: absolute;
+            z-index: 1;
+            margin: 10px;
+            border-radius: 10%;
+            transition: all 0.2s ease-in-out;
+        }
+        .logo:hover {
+            background-color: rgba(255, 255, 255, 0.115);
+            backdrop-filter: blur(8px);
+        }
+        .hero-container {
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url(./images/explore-hero.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .hero-container div {
+            width: 50%;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            font-size: x-large;
+        }
+        .explore-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 4rem;
+        }
+        .explore-container > div {
+            display: grid;
+            grid-gap: 4rem;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+        }
+        .destination-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .destination-card img {
+            height: 300px;
+            width: 300px;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+        .destination-card:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.7);
+        }
+        .destination-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .destination-text h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .destination-card:hover .destination-text {
+            opacity: 1;
+        }
+        .exp-txt {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 4rem;
+            color: #0f3e4a;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="./images/triply-icon.png">
+
+</head>
+<body>
+    <a href="index.html"><img class="logo" src="./images/triply-logo-light.png" alt="logo"></a>
+    <div class="hero-container">
+        <div>
+            <h1>Dream, Explore, Discover</h1>
+            <p>Find hidden gems & top destinations effortlessly!</p>
+        </div>
+    </div>
+    <div class="exp-txt">
+        <h1>Explore Popular Cities!</h1>
+    </div>
+    <div class="explore-container">
+        <div>
+            <div class="destination-card">
+                <img src="./images/explore-paris.webp" alt="explore paris">
+                <div class="destination-text">
+                    <h3>Explore Paris</h3>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="./images/explore-tokyo.jpg" alt="explore tokyo">
+                <div class="destination-text">
+                    <h3>Explore Tokyo</h3>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="./images/explore-newyork.jpg" alt="explore new york">
+                <div class="destination-text">
+                    <h3>Explore New York</h3>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="./images/explore-dubai.jpg" alt="explore dubai">
+                <div class="destination-text">
+                    <h3>Explore Dubai</h3>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="./images/explore-rome.jpg" alt="explore rome">
+                <div class="destination-text">
+                    <h3>Explore Rome</h3>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="./images/explore-sydney.jpg" alt="explore sydney">
+                <div class="destination-text">
+                    <h3>Explore Sydney</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
