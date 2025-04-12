@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Expense Splitter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./images/triply-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Container Styles */
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    color: #13c892;
+    text-shadow: 1px 1px 4px rgba(19, 200, 146, 0.3);
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.step-indicator span {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+    background: #e0e6ed;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.step-indicator span.active {
+    background: #13c892;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.step {
+    display: none;
+    animation: slideIn 0.5s ease;
+}
+
+.step.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: #0f9f71;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 50%;
+    height: 3px;
+    background: #13c892;
+    border-radius: 2px;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #13c892;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e6ed;
+    border-radius: 8px;
+    background: #f9fafc;
+    color: #333;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #13c892;
+    box-shadow: 0 0 8px rgba(19, 200, 146, 0.3);
+    background: #fff;
+}
+
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background: #13c892;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #3ce2a9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(19, 200, 146, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button.back {
+    background: #e0e6ed;
+    color: #666;
+}
+
+button.back:hover {
+    background: #d0d7e1;
+    color: #333;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    padding: 8px 0;
+    font-size: 1rem;
+    color: #666;
+    transition: color 0.3s;
+}
+
+ul li:hover {
+    color: #13c892;
+}
+
+#involvedPeople {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+#involvedPeople label {
+    display: flex;
+    align-items: center;
+    color: #666;
+    cursor: pointer;
+}
+
+#involvedPeople input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: #f9fafc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #13c892;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+td {
+    color: #333;
+    border-bottom: 1px solid #e0e6ed;
+}
+
+tr:hover {
+    background: #e0e6ed;
+}
+
+#balances p {
+    padding: 10px;
+    background: #f9fafc;
+    border-radius: 8px;
+    margin: 5px 0;
+    color: #666;
+    transition: transform 0.3s;
+}
+
+#balances p:hover {
+    transform: translateX(10px);
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Description Styles */
+.description-container {
+    background: #fff;
+    padding: 40px;
+    text-align: center;
+    max-width: 800px;
+    margin: 40px auto 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.description-content {
+    margin: 0 auto;
+}
+
+.description-container h2 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.description-container h2::after {
+    display: none;
+}
+
+.description-container p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    header img {
+        margin-bottom: 10px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .login-signup {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .step-indicator {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .step-indicator span {
+        padding: 10px;
+    }
+
+    input, select, button {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    th, td {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .description-container {
+        padding: 20px;
+        margin: 20px;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./images/triply_logo.png" alt="logo" height="100%">
+        <nav>
+            <div class="dropdown">
+                <button class="dropdown-btn">Explore</button>
+                <div class="dropdown-content">
+                    <a href="explore.html">Itinerary</a>
+                    <a href="#split-bills">Split Bills</a>
+                </div>
+            </div>
+            <a href="blog.html">Blog</a>
+            <a href="mailto:triply@gmail.com">Contact Us</a>
+        </nav>
+        <div class="login-signup">
+            <div id="loggedInState" style="display: none;">
+                <span id="welcomeUser"></span>
+                <button onclick="handleLogout()" class="logout-btn">Logout</button>
+            </div>
+            <div id="loggedOutState">
+                <a href="./login-page.html" class="login-btn">Login</a>
+                <a href="./sign_up.html" class="signup-btn">Sign up</a>
+            </div>
+        </div>
+    </header>
+<main style="height: 40vh;">
+    <div class="description-container">
+        <div class="description-content">
+            <h2>Travel Expense Splitter</h2>
+            <p>Traveling with friends or family is fun, but dealing with shared expenses can be complicated. Our expense splitter tool makes it easy to track who paid for what and ensures everyone contributes their fair share.</p>
+        </div>
+    </div>
+</main>
+    <div class="container">
+        <h1>Travel Expense Splitter</h1>
+        <div class="step-indicator">
+            <span id="step1-indicator" class="active">1. Add People</span>
+            <span id="step2-indicator">2. Add Expenses</span>
+            <span id="step3-indicator">3. View Results</span>
+        </div>
+
+        <!-- Step 1: Add People -->
+        <div id="step1" class="step active">
+            <h2>Add People</h2>
+            <div class="form-group">
+                <input type="text" id="personName" placeholder="Enter person's name">
+                <button onclick="addPerson()">Add Person</button>
+            </div>
+            <ul id="peopleList"></ul>
+            <div class="navigation">
+                <button onclick="nextStep(1)" id="next1">Next: Add Expenses</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Add Expenses -->
+        <div id="step2" class="step">
+            <h2>Add Expenses</h2>
+            <form id="expenseForm">
+                <div class="form-group">
+                    <label for="expenseType">Expense Type:</label>
+                    <select id="expenseType" required>
+                        <option value="food">Food</option>
+                        <option value="travel">Travel</option>
+                        <option value="hotel">Hotel Booking</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" placeholder="Enter amount" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="paidBy">Paid By:</label>
+                    <select id="paidBy" required>
+                        <option value="">Select person</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Involved People:</label>
+                    <div id="involvedPeople"></div>
+                </div>
+                <button type="submit">Add Expense</button>
+            </form>
+            <div class="navigation">
+                <button onclick="prevStep(2)">Back</button>
+                <button onclick="nextStep(2)" id="next2">Next: View Results</button>
+            </div>
+        </div>
+
+        <!-- Step 3: View Results -->
+        <div id="step3" class="step">
+            <h2>Results</h2>
+            <div class="section">
+                <h3>Expenses</h3>
+                <table id="expenseTable">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Paid By</th>
+                            <th>Date</th>
+                            <th>Involved</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expenseTableBody"></tbody>
+                </table>
+            </div>
+            <div class="section">
+                <h3>Final Balances</h3>
+                <div id="balances"></div>
+            </div>
+            <div class="navigation">
+                <button onclick="prevStep(3)">Back</button>
+                <button onclick="resetWizard()">Start Over</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="app-logos">
+            <div class="logoimage">
+                <img src="images/triply_logo.png" alt="not found">
+            </div>
+            <div class="icons">
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-linkedin"></i>
+            <i class="fa-brands fa-square-x-twitter"></i>
+        </div>
+    </div>
+    <div class="footer-links">
+        <div>
+            <h3>Product</h3>
+            <ul>
+                <li><a href="#">Itinerary planner</a></li>
+                <li><a href="#">Budget planner</a></li>
+                <li><a href="#">Packing list</a></li>
+                <li><a href="#">Your map</a></li>
+                <li><a href="#">Travel profile</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Work with us</h3>
+            <ul>
+                <li><a href="#">Travel bloggers</a></li>
+                <li><a href="#">Influencers</a></li>
+                <li><a href="#">DMOs</a></li>
+                <li><a href="#">Travel agents</a></li>
+                <li><a href="#">Hotels</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Give us feedback</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-app">
+        <h3>Download the app</h3>
+        <a href="#"><img src="images/apple-appstore-a39d5559.svg" alt="App Store"></a>
+        <a href="#"><img src="images/playstore-fb652d20.svg" alt="Google Play"></a>
+    </div>
+</div>
+
+<div class="footer-bottom">
+    <p>© Copyright 2024 triply, All rights reserved.</p>
+    <div class="footer-links-bottom">
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Privacy</a>
+        <a href="#">Disclaimer</a>
+    </div>
+</div>
+    <script>let people = [];
+        let expenses = [];
+        let currentStep = 1;
+        
+        function addPerson() {
+            const personName = document.getElementById('personName').value.trim();
+            if (personName && !people.includes(personName)) {
+                people.push(personName);
+                document.getElementById('personName').value = '';
+                updatePeopleUI();
+            }
+        }
+        
+        function updatePeopleUI() {
+            // Update people list in Step 1
+            const peopleList = document.getElementById('peopleList');
+            peopleList.innerHTML = people.map(p => `<li>${p}</li>`).join('');
+        
+            // Update paidBy dropdown and involved people in Step 2
+            const paidBy = document.getElementById('paidBy');
+            paidBy.innerHTML = '<option value="">Select person</option>' + 
+                               people.map(p => `<option value="${p}">${p}</option>`).join('');
+        
+            const involvedPeople = document.getElementById('involvedPeople');
+            involvedPeople.innerHTML = people.map(p => `
+                <label>
+                    <input type="checkbox" name="involved" value="${p}"> ${p}
+                </label>
+            `).join('');
+        }
+        
+        document.getElementById('expenseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+        
+            const expenseType = document.getElementById('expenseType').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            const paidBy = document.getElementById('paidBy').value;
+            const date = document.getElementById('date').value;
+            const involved = Array.from(document.querySelectorAll('input[name="involved"]:checked')).map(cb => cb.value);
+        
+            if (involved.length === 0) {
+                alert('Please select at least one person involved.');
+                return;
+            }
+        
+            const expense = {
+                type: expenseType,
+                amount: amount,
+                paidBy: paidBy,
+                date: date,
+                involved: involved
+            };
+        
+            expenses.push(expense);
+            this.reset();
+            updateExpensesUI();
+            calculateBalances();
+        });
+        
+        function updateExpensesUI() {
+            const expenseTableBody = document.getElementById('expenseTableBody');
+            expenseTableBody.innerHTML = expenses.map(exp => `
+                <tr>
+                    <td>${exp.type.charAt(0).toUpperCase() + exp.type.slice(1)}</td>
+                    <td>$${exp.amount.toFixed(2)}</td>
+                    <td>${exp.paidBy}</td>
+                    <td>${exp.date}</td>
+                    <td>${exp.involved.join(', ')}</td>
+                </tr>
+            `).join('');
+        }
+        
+        function calculateBalances() {
+            const balances = {};
+            people.forEach(person => balances[person] = 0);
+        
+            expenses.forEach(exp => {
+                const splitAmount = exp.amount / exp.involved.length;
+                balances[exp.paidBy] += exp.amount;
+                exp.involved.forEach(person => {
+                    balances[person] -= splitAmount;
+                });
+            });
+        
+            const settlements = [];
+            const debtors = Object.keys(balances).filter(p => balances[p] < -0.01);
+            const creditors = Object.keys(balances).filter(p => balances[p] > 0.01);
+        
+            debtors.forEach(debtor => {
+                let debt = -balances[debtor];
+                while (debt > 0.01 && creditors.length > 0) {
+                    const creditor = creditors[0];
+                    const credit = balances[creditor];
+                    const amount = Math.min(debt, credit);
+                    if (amount > 0.01) {
+                        settlements.push(`${debtor} owes ${creditor} $${amount.toFixed(2)}`);
+                        debt -= amount;
+                        balances[creditor] -= amount;
+                        if (balances[creditor] < 0.01) {
+                            creditors.shift();
+                        }
+                    }
+                }
+            });
+        
+            const balancesDiv = document.getElementById('balances');
+            if (settlements.length === 0) {
+                balancesDiv.innerHTML = '<p>Everyone is settled up!</p>';
+            } else {
+                balancesDiv.innerHTML = settlements.map(s => `<p>${s}</p>`).join('');
+            }
+        }
+        
+        function nextStep(current) {
+            if (current === 1 && people.length === 0) {
+                alert('Please add at least one person.');
+                return;
+            }
+        
+            document.getElementById(`step${current}`).classList.remove('active');
+            document.getElementById(`step${current}-indicator`).classList.remove('active');
+            currentStep = current + 1;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            document.getElementById(`step${currentStep}-indicator`).classList.add('active');
+        }
+        
+        function prevStep(current) {
+            document.getElementById(`step${current}`).classList.remove('active');
+            document.getElementById(`step${current}-indicator`).classList.remove('active');
+            currentStep = current - 1;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            document.getElementById(`step${currentStep}-indicator`).classList.add('active');
+        }
+        
+        function resetWizard() {
+            people = [];
+            expenses = [];
+            currentStep = 1;
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.remove('active');
+            document.getElementById('step1').classList.add('active');
+            document.getElementById('step1-indicator').classList.add('active');
+            document.getElementById('step2-indicator').classList.remove('active');
+            document.getElementById('step3-indicator').classList.remove('active');
+            document.getElementById('peopleList').innerHTML = '';
+            document.getElementById('expenseTableBody').innerHTML = '';
+            document.getElementById('balances').innerHTML = '';
+            updatePeopleUI();
+        }
+        
+        // Initialize UI
+        updatePeopleUI();</script>
+</body>
+</html>
