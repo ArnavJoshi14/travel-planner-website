@@ -24,12 +24,18 @@
                 </div>
             </div>
 
-            <a href="#">Blog</a>
+            <a href="blog.html">Blog</a>
             <a href="mailto:triply@gmail.com">Contact Us</a>
         </nav>
         <div class="login-signup">
-            <a href="./login-page.html" class="login-btn">Login</a>
-            <a href="./sign_up.html" class="signup-btn">Sign up</a>
+            <div id="loggedInState" style="display: none;">
+                <span id="welcomeUser"></span>
+                <button onclick="handleLogout()" class="logout-btn">Logout</button>
+            </div>
+            <div id="loggedOutState">
+                <a href="./login-page.html" class="login-btn">Login</a>
+                <a href="./sign_up.html" class="signup-btn">Sign up</a>
+            </div>
         </div>
     </header>
     <main>
@@ -179,6 +185,31 @@
 </div>
     </div>
 
-    <script src="index.js"></script>
+    <script>
+        // Check login state when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const username = localStorage.getItem('username');
+            const loggedInState = document.getElementById('loggedInState');
+            const loggedOutState = document.getElementById('loggedOutState');
+            const welcomeUser = document.getElementById('welcomeUser');
+
+            if (isLoggedIn && username) {
+                loggedInState.style.display = 'block';
+                loggedOutState.style.display = 'none';
+                welcomeUser.textContent = `Welcome, ${username}!`;
+            } else {
+                loggedInState.style.display = 'none';
+                loggedOutState.style.display = 'block';
+            }
+        });
+
+        // Logout function
+        function handleLogout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            window.location.reload();
+        }
+    </script>
 </body>
 </html>

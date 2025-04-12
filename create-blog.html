@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog - triply</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="./images/triply_logo.png" alt="logo" height="100%">
+        <nav>
+            <div class="dropdown">
+                <button class="dropdown-btn">Explore</button>
+                <div class="dropdown-content">
+                    <a href="explore.html">Itinerary</a>
+                    <a href="#split-bills">Split Bills</a>
+                </div>
+            </div>
+            <a href="blog.html">Blog</a>
+            <a href="mailto:triply@gmail.com">Contact Us</a>
+        </nav>
+        <div class="login-signup">
+            <div id="loggedInState" style="display: none;">
+                <span id="welcomeUser"></span>
+                <button onclick="handleLogout()" class="logout-btn">Logout</button>
+            </div>
+            <div id="loggedOutState">
+                <a href="./login-page.html" class="login-btn">Login</a>
+                <a href="./sign_up.html" class="signup-btn">Sign up</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="create-blog-main">
+        <div class="create-blog-container">
+            <h1>Create New Blog Post</h1>
+            <form id="blogForm" class="blog-form">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <select id="city" name="city" required>
+                        <option value="">Select a city</option>
+                        <option value="paris">Paris</option>
+                        <option value="tokyo">Tokyo</option>
+                        <option value="new-york">New York</option>
+                        <option value="dubai">Dubai</option>
+                        <option value="rome">Rome</option>
+                        <option value="sydney">Sydney</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Upload Image</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                    <div id="imagePreview" style="margin-top: 10px; max-width: 300px;">
+                        <img id="preview" style="display: none; width: 100%; border-radius: 8px;">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea id="content" name="content" rows="10" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-blog-btn">Publish Blog</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Image preview functionality
+        document.getElementById('image').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const preview = document.getElementById('preview');
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Check login state when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const username = localStorage.getItem('username');
+            
+            if (!isLoggedIn) {
+                window.location.href = 'login-page.html';
+                return;
+            }
+
+            const loggedInState = document.getElementById('loggedInState');
+            const loggedOutState = document.getElementById('loggedOutState');
+            const welcomeUser = document.getElementById('welcomeUser');
+
+            loggedInState.style.display = 'block';
+            loggedOutState.style.display = 'none';
+            welcomeUser.textContent = `Welcome, ${username}!`;
+        });
+
+        function handleLogout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            window.location.href = 'index.html';
+        }
+
+        // Handle blog form submission
+        document.getElementById('blogForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const title = document.getElementById('title').value;
+            const city = document.getElementById('city').value;
+            const content = document.getElementById('content').value;
+            const imageFile = document.getElementById('image').files[0];
+            const author = localStorage.getItem('username');
+            const date = new Date().toISOString().split('T')[0];
+
+            // Convert image to base64
+            const imageBase64 = await new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onloadend = () => resolve(reader.result);
+                reader.readAsDataURL(imageFile);
+            });
+
+            const newBlog = {
+                title,
+                author,
+                content,
+                city,
+                date,
+                image: imageBase64
+            };
+
+            // Get existing blogs
+            let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+            
+            // Add new blog to the beginning of user blogs
+            blogs.unshift(newBlog);
+            
+            // Save updated blogs array
+            localStorage.setItem('blogs', JSON.stringify(blogs));
+
+            // Redirect to blogs page
+            window.location.href = 'blog.html';
+        });
+    </script>
+</body>
+</html> 
