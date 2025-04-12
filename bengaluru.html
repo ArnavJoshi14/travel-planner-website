@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bengaluru | Triply</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: "Rubik", sans-serif;
+        }
+        .city-container {
+            display: flex;
+            height: calc(100vh - 60px);
+            margin-top: 60px;
+            padding: 20px;
+            gap: 20px;
+        }
+        .places-section {
+            width: 50%;
+            padding: 2rem;
+            overflow-y: auto;
+            background-color: #f5f5f5;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .map-section {
+            width: 50%;
+            height: calc(100vh - 60px);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+        .place-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+        .place-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .place-card h3 {
+            color: #0f3e4a;
+            margin-top: 0;
+        }
+        .place-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="./images/triply-icon.png">
+</head>
+<body>
+    <header>
+        <img src="./images/triply_logo.png" alt="logo" height="100%">
+        <nav>
+            <div class="dropdown">
+                <button class="dropdown-btn">Explore</button>
+                <div class="dropdown-content">
+                    <a href="explore.html">Itinerary</a>
+                    <a href="split.html">Split Bills</a>
+                </div>
+            </div>
+            <a href="blog.html">Blog</a>
+            <a href="mailto:triply@gmail.com">Contact Us</a>
+        </nav>
+        <div class="login-signup">
+            <div id="loggedInState" style="display: none;">
+                <span id="welcomeUser"></span>
+                <button onclick="handleLogout()" class="logout-btn">Logout</button>
+            </div>
+            <div id="loggedOutState" style="display: none;">
+                <a href="./login-page.html" class="login-btn">Login</a>
+                <a href="./sign_up.html" class="signup-btn">Sign up</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="city-container">
+        <div class="places-section" id="places-section">
+            <!-- Places will be dynamically added here -->
+        </div>
+        <div class="map-section">
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Bengaluru data
+        const cityData = {
+            name: 'Bengaluru',
+            coordinates: [12.9716, 77.5946],
+            places: [
+                {
+                    name: 'Lalbagh Botanical Garden',
+                    coordinates: [12.9507, 77.5848],
+                    description: 'A historic botanical garden spread over 240 acres, featuring rare plants, a glass house, and a lake. It\'s a perfect place for nature lovers and photography enthusiasts.'
+                },
+                {
+                    name: 'Bangalore Palace',
+                    coordinates: [12.9977, 77.5925],
+                    description: 'A magnificent palace built in Tudor style architecture, inspired by Windsor Castle. The palace grounds host various cultural events and exhibitions throughout the year.'
+                },
+                {
+                    name: 'Cubbon Park',
+                    coordinates: [12.9762, 77.5927],
+                    description: 'A landmark park in the heart of the city, spread over 300 acres. It houses several important buildings and statues, and is a popular spot for morning walks and picnics.'
+                },
+                {
+                    name: 'ISKCON Temple',
+                    coordinates: [13.0103, 77.5510],
+                    description: 'One of the largest ISKCON temples in the world, known for its magnificent architecture and spiritual atmosphere. The temple complex includes a cultural center and a vegetarian restaurant.'
+                },
+                {
+                    name: 'UB City',
+                    coordinates: [12.9716, 77.5946],
+                    description: 'Bangalore\'s first luxury mall, featuring high-end retail stores, fine dining restaurants, and entertainment options. The architecture is inspired by European design.'
+                }
+            ]
+        };
+
+        // Initialize map
+        const map = L.map('map').setView(cityData.coordinates, 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add markers for each place
+        cityData.places.forEach(place => {
+            const marker = L.marker(place.coordinates).addTo(map);
+            marker.bindPopup(place.name);
+        });
+
+        // Populate places section
+        const placesSection = document.getElementById('places-section');
+        cityData.places.forEach(place => {
+            const placeCard = document.createElement('div');
+            placeCard.className = 'place-card';
+            placeCard.innerHTML = `
+                <h3>${place.name}</h3>
+                <p>${place.description}</p>
+            `;
+            placesSection.appendChild(placeCard);
+        });
+    </script>
+</body>
+</html> 
