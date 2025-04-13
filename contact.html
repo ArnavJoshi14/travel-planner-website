@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Travel Itinerary</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: "Rubik", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+        }
+        .header {
+            background: url('https://source.unsplash.com/1600x400/?travel') no-repeat center;
+            background-size: cover;
+            padding: 60px 20px;
+            text-align: center;
+            color: #13c892;
+        }
+        .header h1 {
+            padding-top: 10px;
+            margin: 0;
+            font-size: 2.9em;
+        }
+        .header p{
+            padding: 30px;
+            color: #0f3e4a;
+            font-weight: 600;
+            font-size: 2.2em;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        button {
+            background-color: #13c892;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 18px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .error {
+            color: #e74c3c;
+            font-size: 0.9em;
+            display: none;
+            margin-top: 5px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 15px;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="./images/triply_logo.png" alt="logo" height="100%">
+        <nav>
+            <a href="index.html">Home</a>
+            <!-- <a href="explore.html">Explore</a> -->
+            <div class="dropdown">
+                <button class="dropdown-btn">Explore</button>
+                <div class="dropdown-content">
+                    <a href="explore.html">Itinerary</a>
+                    <a href="split.html">Split Bills</a>
+                </div>
+            </div>
+
+            <a href="blog.html">Blog</a>
+            <a href="mailto:triply@gmail.com">Contact Us</a>
+        </nav>
+        <div class="login-signup">
+            <div id="loggedInState" style="display: none;">
+                <span id="welcomeUser"></span>
+                <button onclick="handleLogout()" class="logout-btn">Logout</button>
+            </div>
+            <div id="loggedOutState">
+                <a href="./login-page.html" class="login-btn">Login</a>
+                <a href="./sign_up.html" class="signup-btn">Sign up</a>
+            </div>
+        </div>
+    </header>
+    <main style="height: 45vh">
+
+        <div class="header">
+            <h1>Contact Us</h1>
+            <p>Plan your dream trip with us! We're here to help.</p>
+        </div>
+    </main>
+    <div class="container">
+        <form id="contactForm" onsubmit="return validateForm(event)">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+                <span class="error" id="nameError">Please enter your full name.</span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+                <span class="error" id="emailError">Please enter a valid email address.</span>
+            </div>
+            <div class="form-group">
+                <label for="inquiryType">Type of Inquiry</label>
+                <select id="inquiryType" name="inquiryType" required>
+                    <option value="">Select an option</option>
+                    <option value="itinerary">Custom Itinerary</option>
+                    <option value="booking">Booking Assistance</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="feedback">Feedback</option>
+                </select>
+                <span class="error" id="inquiryTypeError">Please select an inquiry type.</span>
+            </div>
+            <div class="form-group">
+                <label for="destination">Preferred Destination (Optional)</label>
+                <input type="text" id="destination" name="destination">
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" required></textarea>
+                <span class="error" id="messageError">Please enter your message.</span>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+    <div class="footer">
+        <div class="app-logos">
+            <div class="logoimage">
+                <img src="images/triply_logo.png" alt="not found">
+            </div>
+            <div class="icons">
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-linkedin"></i>
+            <i class="fa-brands fa-square-x-twitter"></i>
+        </div>
+    </div>
+    <div class="footer-links">
+        <div>
+            <h3>Product</h3>
+            <ul>
+                <li><a href="#">Itinerary planner</a></li>
+                <li><a href="#">Budget planner</a></li>
+                <li><a href="#">Packing list</a></li>
+                <li><a href="#">Your map</a></li>
+                <li><a href="#">Travel profile</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Work with us</h3>
+            <ul>
+                <li><a href="#">Travel bloggers</a></li>
+                <li><a href="#">Influencers</a></li>
+                <li><a href="#">DMOs</a></li>
+                <li><a href="#">Travel agents</a></li>
+                <li><a href="#">Hotels</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Give us feedback</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-app">
+        <h3>Download the app</h3>
+        <a href="#"><img src="images/apple-appstore-a39d5559.svg" alt="App Store"></a>
+        <a href="#"><img src="images/playstore-fb652d20.svg" alt="Google Play"></a>
+    </div>
+</div>
+
+<div class="footer-bottom">
+    <p>© Copyright 2024 triply, All rights reserved.</p>
+    <div class="footer-links-bottom">
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Privacy</a>
+        <a href="#">Disclaimer</a>
+    </div>
+</div>
+    </div>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            let isValid = true;
+
+            // Reset error messages
+            document.querySelectorAll('.error').forEach(error => error.style.display = 'none');
+
+            // Name validation
+            const name = document.getElementById('name').value.trim();
+            if (!name) {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Email validation
+            const email = document.getElementById('email').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Inquiry type validation
+            const inquiryType = document.getElementById('inquiryType').value;
+            if (!inquiryType) {
+                document.getElementById('inquiryTypeError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Message validation
+            const message = document.getElementById('message').value.trim();
+            if (!message) {
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Here you would typically send the form data to a server
+                alert('Thank you for your message! We will get back to you soon.');
+                document.getElementById('contactForm').reset();
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
