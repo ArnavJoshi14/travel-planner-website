@@ -113,7 +113,6 @@
 
     <div class="city-container">
         <div class="places-section" id="places-section">
-            <!-- Places will be dynamically added here -->
         </div>
         <div class="map-section">
             <div id="map"></div>
@@ -122,29 +121,24 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Initialize map
         const map = L.map('map').setView([0, 0], 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // City data will be defined in individual city files
         const cityData = {
             name: '',
             coordinates: [0, 0],
             places: []
         };
 
-        // Set map view to city coordinates
         map.setView(cityData.coordinates, 13);
 
-        // Add markers for each place
         cityData.places.forEach(place => {
             const marker = L.marker(place.coordinates).addTo(map);
             marker.bindPopup(place.name);
         });
 
-        // Populate places section
         const placesSection = document.getElementById('places-section');
         cityData.places.forEach(place => {
             const placeCard = document.createElement('div');

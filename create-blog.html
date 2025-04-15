@@ -77,7 +77,6 @@
     </main>
 
     <script>
-        // Image preview functionality
         document.getElementById('image').addEventListener('change', function(e) {
             const file = e.target.files[0];
             const preview = document.getElementById('preview');
@@ -93,7 +92,6 @@
             }
         });
 
-        // Check login state when page loads
         document.addEventListener('DOMContentLoaded', () => {
             const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
             const username = localStorage.getItem('username');
@@ -118,7 +116,6 @@
             window.location.href = 'index.html';
         }
 
-        // Handle blog form submission
         document.getElementById('blogForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -129,7 +126,6 @@
             const author = localStorage.getItem('username');
             const date = new Date().toISOString().split('T')[0];
 
-            // Convert image to base64
             const imageBase64 = await new Promise((resolve) => {
                 const reader = new FileReader();
                 reader.onloadend = () => resolve(reader.result);
@@ -145,16 +141,12 @@
                 image: imageBase64
             };
 
-            // Get existing blogs
             let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
             
-            // Add new blog to the beginning of user blogs
             blogs.unshift(newBlog);
             
-            // Save updated blogs array
             localStorage.setItem('blogs', JSON.stringify(blogs));
 
-            // Redirect to blogs page
             window.location.href = 'blog.html';
         });
     </script>

@@ -53,12 +53,10 @@
         </div>
 
         <div class="blog-container" id="blogContainer">
-            <!-- Blog cards will be dynamically inserted here -->
         </div>
     </main>
 
     <script>
-        // Check login state when page loads
         document.addEventListener('DOMContentLoaded', () => {
             const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
             const username = localStorage.getItem('username');
@@ -78,7 +76,6 @@
                 createBlogBtn.style.display = 'none';
             }
 
-            // Load blogs from localStorage or use dummy data if none exists
             loadBlogs();
         });
 
@@ -88,7 +85,6 @@
             window.location.reload();
         }
 
-        // Dummy blog data
         const dummyBlogs = [
             {
                 title: "A Weekend in Paris",
@@ -141,21 +137,16 @@
         ];
 
         function loadBlogs() {
-            // Get existing blogs
             let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
             
-            // Check if we have any user-created blogs
             const userBlogs = blogs.filter(blog => !dummyBlogs.some(dummy => dummy.title === blog.title));
             
-            // Combine user blogs with dummy blogs
             blogs = [...userBlogs, ...dummyBlogs];
             
-            // Save the combined blogs back to localStorage
             localStorage.setItem('blogs', JSON.stringify(blogs));
             
             displayBlogs(blogs);
 
-            // Add filter functionality
             document.querySelectorAll('.filter-btn').forEach(button => {
                 button.addEventListener('click', () => {
                     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));

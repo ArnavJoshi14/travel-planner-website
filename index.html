@@ -15,7 +15,6 @@
     <header>
         <img src="./images/triply_logo.png" alt="logo" height="100%">
         <nav>
-            <!-- <a href="explore.html">Explore</a> -->
             <div class="dropdown">
                 <button class="dropdown-btn">Explore</button>
                 <div class="dropdown-content">
@@ -47,38 +46,6 @@
             </div>
         </div>
     </main>
-    <!-- <div class="nav-container">
-        <div class="nav-icons">
-            <div class="nav-item">
-                <i class="fa-solid fa-list"></i>
-                <span>Checklist</span>
-            </div>
-            <div class="nav-item">
-                <i class="fa-solid fa-user"></i>
-                <span>Profile</span>
-            </div>
-            <div class="nav-item">
-                <i class="fa-solid fa-sim-card"></i>
-                <span>eSIM</span>
-            </div>
-            <div class="nav-item">
-                <i class="fa-solid fa-file"></i>
-                <span>Planner</span>
-            </div>
-            <div class="nav-item active">
-                <i class="fa-solid fa-dollar-sign"></i>
-                <span>Budget</span>
-            </div>
-            <div class="nav-item">
-                <i class="fa-solid fa-video"></i>
-                <span>Travel reels</span>
-            </div>
-            <div class="nav-item">
-                <i class="fa-solid fa-map-location-dot"></i>
-                <span>map</span>
-            </div>
-        </div>
-    </div> -->
 <div class="heading1">
     <h2>From planning,<br> <span>to tracking, to reliving</span></h2>
     <p>Plan and share your trips with friends and connect with others. Explore content by travel bloggers and like-minded travelers.</p>
@@ -186,7 +153,6 @@
     </div>
 
     <script>
-        // Check login state when page loads
         document.addEventListener('DOMContentLoaded', () => {
             const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
             const username = localStorage.getItem('username');
@@ -204,7 +170,6 @@
             }
         });
 
-        // Logout function
         function handleLogout() {
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('username');

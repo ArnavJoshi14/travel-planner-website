@@ -93,7 +93,6 @@
 
     <div class="city-container">
         <div class="places-section" id="places-section">
-            <!-- Places will be dynamically added here -->
         </div>
         <div class="map-section">
             <div id="map"></div>
@@ -102,7 +101,6 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Check login status
         function checkLoginStatus() {
             const loggedInState = document.getElementById('loggedInState');
             const loggedOutState = document.getElementById('loggedOutState');
@@ -124,10 +122,8 @@
             window.location.href = 'index.html';
         }
 
-        // Check login status when page loads
         checkLoginStatus();
 
-        // Paris data
         const cityData = {
             name: 'Paris',
             coordinates: [48.8566, 2.3522],
@@ -160,19 +156,16 @@
             ]
         };
 
-        // Initialize map
         const map = L.map('map').setView(cityData.coordinates, 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Add markers for each place
         cityData.places.forEach(place => {
             const marker = L.marker(place.coordinates).addTo(map);
             marker.bindPopup(place.name);
         });
 
-        // Populate places section
         const placesSection = document.getElementById('places-section');
         cityData.places.forEach(place => {
             const placeCard = document.createElement('div');

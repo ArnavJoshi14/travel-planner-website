@@ -230,17 +230,14 @@
             event.preventDefault();
             let isValid = true;
 
-            // Reset error messages
             document.querySelectorAll('.error').forEach(error => error.style.display = 'none');
 
-            // Name validation
             const name = document.getElementById('name').value.trim();
             if (!name) {
                 document.getElementById('nameError').style.display = 'block';
                 isValid = false;
             }
 
-            // Email validation
             const email = document.getElementById('email').value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!email || !emailRegex.test(email)) {
@@ -248,14 +245,12 @@
                 isValid = false;
             }
 
-            // Inquiry type validation
             const inquiryType = document.getElementById('inquiryType').value;
             if (!inquiryType) {
                 document.getElementById('inquiryTypeError').style.display = 'block';
                 isValid = false;
             }
 
-            // Message validation
             const message = document.getElementById('message').value.trim();
             if (!message) {
                 document.getElementById('messageError').style.display = 'block';
@@ -263,12 +258,11 @@
             }
 
             if (isValid) {
-                // Here you would typically send the form data to a server
                 alert('Thank you for your message! We will get back to you soon.');
                 document.getElementById('contactForm').reset();
             }
 
-            return isValid;
+            return false;
         }
     </script>
 </body>
